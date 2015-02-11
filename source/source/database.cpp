@@ -1,7 +1,5 @@
 #include "database/database.h"
 
-#include "database/airport_data.h"
-#include "database/business_data.h"
 #include "config.h"
 
 database::database()
@@ -15,8 +13,6 @@ database::database()
 
 	#endif
 
-	_session->mapClass<airport_data>(AIRPORTS);
-	_session->mapClass<business_data>(BUSINESS);
 }
 database::~database()
 {
