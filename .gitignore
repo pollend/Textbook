@@ -1,0 +1,8 @@
+CmakeCache.txt
+CMakeFiles
+MakeFiles
+camke_install.cmake
+*.cgi
+*.wt
+*.wtfcgi
+install_manifest.txt

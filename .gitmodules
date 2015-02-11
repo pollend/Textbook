@@ -1,0 +1,6 @@
+[submodule "cgi-src/lib/wt"]
+	path = cgi-src/lib/wt
+	url = git://github.com/kdeforche/wt.git
+[submodule "cgi-src/lib/boost"]
+	path = cgi-src/lib/boost
+	url = git@github.com:boostorg/boost.git

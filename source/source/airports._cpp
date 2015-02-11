@@ -1,0 +1,147 @@
+#include "pages/airports.h"
+#include "config.h"
+#include <string>
+#include "table.h"
+#include "table_entry.h"
+#include "document/document.h"
+#include "document/basic_document_pair.h"
+#include "document/loop_document_pair.h"
+#include <boost/regex.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/regex.hpp>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
+#include <boost/algorithm/string/trim.hpp>
+
+
+airports::airports(){
+	_table = new table(DIR_ROOT "/.data/airport.db",DVB_DATABASE_GET);
+	_local_businesses = new table(DIR_ROOT "/.data/custom.db",DVB_DATABASE_GET);
+}
+airports::~airports(){
+	delete _table;
+}
+
+
+void airports::update_everything(){
+	for (std::vector<table_entry*>::iterator i = _table->begin(); i != _table->end(); ++i)
+	{
+		update_airport((*i));
+	}
+	update_home();
+}
+
+void airports::update_airport(table_entry* entry){
+	document * lairport_document = new document(DIR_ROOT "/templates/airport_single");
+
+	std::vector<std::string> lap_id = std::vector<std::string>();
+	boost::algorithm::split_regex(lap_id,entry->get_entry("AP_id"),boost::regex("\\-+"));
+	boost::trim(lap_id[0]);	
+	lairport_document->set_value("airport_name",entry->get_entry("AP_name"));
+
+	lairport_document->set_value("airport_image",entry->get_entry("ImgP"));
+
+	lairport_document->set_value("coordinates",entry->get_entry("Lat") + " " + entry->get_entry("Lon"));
+	lairport_document->set_value("department",entry->get_entry("Notes_Dep"));
+
+	lairport_document->set_value("fuel",entry->get_entry("Fuel"));
+	lairport_document->set_value("repair",entry->get_entry("Repairs"));
+
+	lairport_document->set_value("awos_phone",entry->get_entry("Phone_at"));
+	lairport_document->set_value("ctaf_phone",entry->get_entry("Phone_to"));
+	lairport_document->set_value("ffs_phone",entry->get_entry("Phone_fs") );
+	lairport_document->set_value("office_phone",entry->get_entry("Phone_of"));
+
+	lairport_document->set_value("awos_frequency",entry->get_entry("Freq_at"));
+	lairport_document->set_value("ctaf_frequency",entry->get_entry("Freq_ct"));
+	lairport_document->set_value("ffs_frequency",entry->get_entry("Freq_fs") );
+	lairport_document->set_value("office_frequency",entry->get_entry("Freq_of"));
+
+	lairport_document->set_value("tpa_msl",entry->get_entry("TPA"));
+	lairport_document->set_value("approach",entry->get_entry("Freq_ap"));
+
+	lairport_document->set_value("operational_hours",entry->get_entry("hrMon"));
+
+	lairport_document->set_value("approaches_description",entry->get_entry("Notes_Arr"));
+
+	lairport_document->set_value("food",entry->get_entry("Food"));
+	lairport_document->set_value("lodging",entry->get_entry("Lodging"));
+	lairport_document->set_value("transport",entry->get_entry("Transport"));
+
+	lairport_document->set_value("local_attractions",entry->get_entry("Attract"));
+
+	lairport_document->set_value("notes",entry->get_entry("Notes"));
+
+	lairport_document->set_value("fees",entry->get_entry("Fees"));
+
+	std::vector<table_entry*> lbusinesses = _local_businesses->find_entries("AP_id",entry->get_entry("AP_id"));
+
+	loop_document_pair* llooped_businesses = (loop_document_pair*)lairport_document->get_document_pair("local_businesses");
+	for (std::vector<table_entry*>::iterator i = lbusinesses.begin(); i != lbusinesses.end(); ++i)
+	{
+		std::vector<basic_document_pair*> lbusiness = std::vector<basic_document_pair*>();
+		lbusiness.push_back(new basic_document_pair("business_name",(*i)->get_entry("Company")));
+		lbusiness.push_back(new basic_document_pair("business_description",(*i)->get_entry("List")));
+		llooped_businesses->add_looped_pair(lbusiness);
+	}
+
+	loop_document_pair* llooped_gallery = (loop_document_pair*)lairport_document->get_document_pair("gallery");
+
+	add_to_gallery(llooped_gallery,entry->get_entry("ImgP"));
+	add_to_gallery(llooped_gallery,entry->get_entry("ImgT"));
+	add_to_gallery(llooped_gallery,entry->get_entry("ImgI"));
+
+
+	save_to_file(lairport_document,DIR_ROOT "/airports/"+boost::algorithm::to_lower_copy(lap_id[0])+"/index");
+	delete lairport_document;
+
+}
+
+void airports::add_to_gallery(loop_document_pair* loop_document,std::string image)
+{
+	//make sure images aren't blank
+	if(image != "")
+	{
+		std::vector<basic_document_pair*> lgallery = std::vector<basic_document_pair*>();
+		lgallery.push_back(new basic_document_pair("img",image));
+		loop_document->add_looped_pair(lgallery);
+	}
+}
+
+void airports::add_airport()
+{
+
+}
+
+void airports::update_all_airports()
+{
+	std::vector<table_entry*>* lentires = _table->get_entries();
+	for(int x =1; x < lentires->size(); x++)
+	{
+		update_airport((*lentires)[x]);
+	}		
+}
+
+void airports::update_home(){
+
+	document * lhome_document =new document(DIR_ROOT "/templates/airport_home");
+	std::string lleft = "";
+	std::string lright= "";
+	std::vector<table_entry*>* lentires = _table->get_entries();
+	for(int x =1; x < lentires->size(); x++)
+	{
+		std::string lrow = "";
+
+		std::vector<std::string> lap_id = std::vector<std::string>();
+		boost::algorithm::split_regex(lap_id,(*lentires)[x]->get_entry("AP_id"),boost::regex("\\-+"));
+			lrow += "<div>"+lap_id[0]+"<a href='"DNS_ROOT+"/airports/"+boost::algorithm::to_lower_copy(lap_id[0])+"'>"+lap_id[1]+"</a></div>";
+			if((lentires->size()-1)/2 < x)
+				lright += lrow;
+			else
+				lleft += lrow;
+	}
+	lhome_document->set_value("left_airports",lleft);
+	lhome_document->set_value("right_airports",lright);
+	save_to_file(lhome_document,DIR_ROOT "/airports/index");
+	delete lhome_document;
+}
