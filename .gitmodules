@@ -4,3 +4,12 @@
 [submodule "cgi-src/lib/boost"]
 	path = cgi-src/lib/boost
 	url = git@github.com:boostorg/boost.git
+[submodule "source/lib/winst"]
+	path = source/lib/winst
+	url = git://github.com/kdeforche/winst.git
+[submodule "source/lib/wt"]
+	path = source/lib/wt
+	url = git://github.com/kdeforche/wt.git
+[submodule "source/lib/boost"]
+	path = source/lib/boost
+	url = git@github.com:boostorg/boost.git
