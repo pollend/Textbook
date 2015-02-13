@@ -2,15 +2,15 @@
 #define _BODY_SEARCH_H_
 #include "pages/body/body.h"
 
-class body_explore : public body
+class body_search : public body
 {
 	private:
 
 	public:
 
 		virtual Wt::WWidget* content(std::vector<std::string>& lpath);
-		body_explore(database* data);
-		~body_explore();
+		body_search(database* data);
+		~body_search();
 	
 };
 #endif

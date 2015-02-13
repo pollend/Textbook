@@ -6,4 +6,5 @@ echo "running with : "$CORES
 make #-j $CORES 
 ../release/generate.wt COMMAND
 #./generate.cgi COMMAND
-service apache2 restart
+#service apache2 restart
+systemctl restart httpd.service 

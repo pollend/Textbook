@@ -20,6 +20,7 @@
 #define DATABASE_PASSWORD "QXc3r79pLDH8BuZX"
 #define DATABASE_USERNAME "pilotage"
 #define DATABASE_NAME "pilot"
+#define DATABASE_SOCKET "/var/lib/mysql/mysql.sock"
 
 
 #endif

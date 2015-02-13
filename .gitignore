@@ -5,4 +5,5 @@ camke_install.cmake
 *.cgi
 *.wt
 *.wtfcgi
+config.h
 install_manifest.txt
