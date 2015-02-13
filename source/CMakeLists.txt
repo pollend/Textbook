@@ -123,4 +123,5 @@ macro(add_executable _name)
 	endif()
 endmacro()
 
+add_executable(generate generate.cpp)
 add_executable(main main.cpp)

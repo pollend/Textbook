@@ -16,17 +16,16 @@
 #include <Wt/WContainerWidget>
 #include <Wt/WLink>
 
-
 #include <vector> 
-
 #include "database/database.h"
-
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string/classification.hpp>
 
-
 #include "pages/body/body_not_found.h"
+#include "pages/body/body_explore.h"
+#include "pages/body/body_home.h"
+#include "pages/body/body_login.h"
 #include "pages/body/body.h"
 
 #include <iostream>

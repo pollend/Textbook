@@ -99,6 +99,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named generate
+
+# Build rule for target.
+generate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 generate
+.PHONY : generate
+
+# fast build rule for target.
+generate/fast:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/build
+.PHONY : generate/fast
+
+#=============================================================================
 # Target rules for targets named main
 
 # Build rule for target.
@@ -110,6 +123,30 @@ main: cmake_check_build_system
 main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
+
+generate.o: generate.cpp.o
+.PHONY : generate.o
+
+# target to build an object file
+generate.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/generate.cpp.o
+.PHONY : generate.cpp.o
+
+generate.i: generate.cpp.i
+.PHONY : generate.i
+
+# target to preprocess a source file
+generate.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/generate.cpp.i
+.PHONY : generate.cpp.i
+
+generate.s: generate.cpp.s
+.PHONY : generate.s
+
+# target to generate assembly for a file
+generate.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/generate.cpp.s
+.PHONY : generate.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -140,6 +177,7 @@ source/body.o: source/body.cpp.o
 
 # target to build an object file
 source/body.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/body.cpp.o
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/body.cpp.o
 .PHONY : source/body.cpp.o
 
@@ -148,6 +186,7 @@ source/body.i: source/body.cpp.i
 
 # target to preprocess a source file
 source/body.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/body.cpp.i
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/body.cpp.i
 .PHONY : source/body.cpp.i
 
@@ -156,6 +195,7 @@ source/body.s: source/body.cpp.s
 
 # target to generate assembly for a file
 source/body.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/body.cpp.s
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/body.cpp.s
 .PHONY : source/body.cpp.s
 
@@ -164,6 +204,7 @@ source/body_not_found.o: source/body_not_found.cpp.o
 
 # target to build an object file
 source/body_not_found.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/body_not_found.cpp.o
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/body_not_found.cpp.o
 .PHONY : source/body_not_found.cpp.o
 
@@ -172,6 +213,7 @@ source/body_not_found.i: source/body_not_found.cpp.i
 
 # target to preprocess a source file
 source/body_not_found.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/body_not_found.cpp.i
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/body_not_found.cpp.i
 .PHONY : source/body_not_found.cpp.i
 
@@ -180,14 +222,70 @@ source/body_not_found.s: source/body_not_found.cpp.s
 
 # target to generate assembly for a file
 source/body_not_found.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/body_not_found.cpp.s
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/body_not_found.cpp.s
 .PHONY : source/body_not_found.cpp.s
+
+source/book_data.o: source/book_data.cpp.o
+.PHONY : source/book_data.o
+
+# target to build an object file
+source/book_data.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/book_data.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/book_data.cpp.o
+.PHONY : source/book_data.cpp.o
+
+source/book_data.i: source/book_data.cpp.i
+.PHONY : source/book_data.i
+
+# target to preprocess a source file
+source/book_data.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/book_data.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/book_data.cpp.i
+.PHONY : source/book_data.cpp.i
+
+source/book_data.s: source/book_data.cpp.s
+.PHONY : source/book_data.s
+
+# target to generate assembly for a file
+source/book_data.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/book_data.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/book_data.cpp.s
+.PHONY : source/book_data.cpp.s
+
+source/chapter_data.o: source/chapter_data.cpp.o
+.PHONY : source/chapter_data.o
+
+# target to build an object file
+source/chapter_data.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/chapter_data.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/chapter_data.cpp.o
+.PHONY : source/chapter_data.cpp.o
+
+source/chapter_data.i: source/chapter_data.cpp.i
+.PHONY : source/chapter_data.i
+
+# target to preprocess a source file
+source/chapter_data.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/chapter_data.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/chapter_data.cpp.i
+.PHONY : source/chapter_data.cpp.i
+
+source/chapter_data.s: source/chapter_data.cpp.s
+.PHONY : source/chapter_data.s
+
+# target to generate assembly for a file
+source/chapter_data.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/chapter_data.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/chapter_data.cpp.s
+.PHONY : source/chapter_data.cpp.s
 
 source/database.o: source/database.cpp.o
 .PHONY : source/database.o
 
 # target to build an object file
 source/database.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/database.cpp.o
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/database.cpp.o
 .PHONY : source/database.cpp.o
 
@@ -196,6 +294,7 @@ source/database.i: source/database.cpp.i
 
 # target to preprocess a source file
 source/database.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/database.cpp.i
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/database.cpp.i
 .PHONY : source/database.cpp.i
 
@@ -204,14 +303,43 @@ source/database.s: source/database.cpp.s
 
 # target to generate assembly for a file
 source/database.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/database.cpp.s
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/database.cpp.s
 .PHONY : source/database.cpp.s
+
+source/image_data.o: source/image_data.cpp.o
+.PHONY : source/image_data.o
+
+# target to build an object file
+source/image_data.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/image_data.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/image_data.cpp.o
+.PHONY : source/image_data.cpp.o
+
+source/image_data.i: source/image_data.cpp.i
+.PHONY : source/image_data.i
+
+# target to preprocess a source file
+source/image_data.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/image_data.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/image_data.cpp.i
+.PHONY : source/image_data.cpp.i
+
+source/image_data.s: source/image_data.cpp.s
+.PHONY : source/image_data.s
+
+# target to generate assembly for a file
+source/image_data.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/image_data.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/image_data.cpp.s
+.PHONY : source/image_data.cpp.s
 
 source/page_base.o: source/page_base.cpp.o
 .PHONY : source/page_base.o
 
 # target to build an object file
 source/page_base.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/page_base.cpp.o
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/page_base.cpp.o
 .PHONY : source/page_base.cpp.o
 
@@ -220,6 +348,7 @@ source/page_base.i: source/page_base.cpp.i
 
 # target to preprocess a source file
 source/page_base.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/page_base.cpp.i
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/page_base.cpp.i
 .PHONY : source/page_base.cpp.i
 
@@ -228,8 +357,63 @@ source/page_base.s: source/page_base.cpp.s
 
 # target to generate assembly for a file
 source/page_base.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/page_base.cpp.s
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/page_base.cpp.s
 .PHONY : source/page_base.cpp.s
+
+source/patch_data.o: source/patch_data.cpp.o
+.PHONY : source/patch_data.o
+
+# target to build an object file
+source/patch_data.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/patch_data.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/patch_data.cpp.o
+.PHONY : source/patch_data.cpp.o
+
+source/patch_data.i: source/patch_data.cpp.i
+.PHONY : source/patch_data.i
+
+# target to preprocess a source file
+source/patch_data.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/patch_data.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/patch_data.cpp.i
+.PHONY : source/patch_data.cpp.i
+
+source/patch_data.s: source/patch_data.cpp.s
+.PHONY : source/patch_data.s
+
+# target to generate assembly for a file
+source/patch_data.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/patch_data.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/patch_data.cpp.s
+.PHONY : source/patch_data.cpp.s
+
+source/review_data.o: source/review_data.cpp.o
+.PHONY : source/review_data.o
+
+# target to build an object file
+source/review_data.cpp.o:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/review_data.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/review_data.cpp.o
+.PHONY : source/review_data.cpp.o
+
+source/review_data.i: source/review_data.cpp.i
+.PHONY : source/review_data.i
+
+# target to preprocess a source file
+source/review_data.cpp.i:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/review_data.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/review_data.cpp.i
+.PHONY : source/review_data.cpp.i
+
+source/review_data.s: source/review_data.cpp.s
+.PHONY : source/review_data.s
+
+# target to generate assembly for a file
+source/review_data.cpp.s:
+	$(MAKE) -f CMakeFiles/generate.dir/build.make CMakeFiles/generate.dir/source/review_data.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/review_data.cpp.s
+.PHONY : source/review_data.cpp.s
 
 # Help Target
 help:
@@ -238,8 +422,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... generate"
 	@echo "... main"
 	@echo "... rebuild_cache"
+	@echo "... generate.o"
+	@echo "... generate.i"
+	@echo "... generate.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -249,12 +437,27 @@ help:
 	@echo "... source/body_not_found.o"
 	@echo "... source/body_not_found.i"
 	@echo "... source/body_not_found.s"
+	@echo "... source/book_data.o"
+	@echo "... source/book_data.i"
+	@echo "... source/book_data.s"
+	@echo "... source/chapter_data.o"
+	@echo "... source/chapter_data.i"
+	@echo "... source/chapter_data.s"
 	@echo "... source/database.o"
 	@echo "... source/database.i"
 	@echo "... source/database.s"
+	@echo "... source/image_data.o"
+	@echo "... source/image_data.i"
+	@echo "... source/image_data.s"
 	@echo "... source/page_base.o"
 	@echo "... source/page_base.i"
 	@echo "... source/page_base.s"
+	@echo "... source/patch_data.o"
+	@echo "... source/patch_data.i"
+	@echo "... source/patch_data.s"
+	@echo "... source/review_data.o"
+	@echo "... source/review_data.i"
+	@echo "... source/review_data.s"
 .PHONY : help
 
 
